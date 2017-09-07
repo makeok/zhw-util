@@ -5,9 +5,9 @@
 短信验证码、图形验证码、发送邮件、本机信息获取、系统资源SNMP监控、EXCEL和WORD与HTML转换<br>
 加解密、签名验证、字符编码、线程超时、LUCENSE关键字、正则表达式<br>
 SPRING事件监听、SHIRO自定义鉴权和动态权限、JDBC封装<br>
-</p>
-# com.zhw.core.classhotloader
-类加载
+</p>  
+# com.zhw.core.classhotloader  
+类加载  
 ## com.zhw.core.db
 * mysql、oracle数据库连接、操作、防止sql注入，转换为bean，数据库监控
 * oracle连接,操作
@@ -68,3 +68,14 @@ SPRING事件监听、SHIRO自定义鉴权和动态权限、JDBC封装<br>
 * 验证码生成器
 ## com.zhw.web.util.websocket
 * websocket打开、广播、响应、推送、销毁
+
+
+#to do list
+* js常用库
+
+#CHANGELOG
+## v0.1
+* v0.1
+
+#contact
+<zhw513029@163.com>
