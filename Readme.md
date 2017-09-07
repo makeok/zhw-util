@@ -1,12 +1,19 @@
-# <p align="center">zhw-util</p>
-<p align="center">WEB开发工具集合</p>
 <p align="center">
-包含类操作、数据库操作、任务计划、通用日志输出、WEBGIS、文件上传下载、文件操作<br>
-短信验证码、图形验证码、发送邮件、本机信息获取、系统资源SNMP监控、EXCEL和WORD与HTML转换<br>
-加解密、签名验证、字符编码、线程超时、LUCENSE关键字、正则表达式<br>
-SPRING事件监听、SHIRO自定义鉴权和动态权限、JDBC封装<br>
-</p>  
+	<h3 align="center">zhw-util</h3>
+	<p align="center">WEB开发工具集合</p>
+	<p align="center">
+	包含类操作、数据库操作、任务计划、通用日志输出、WEBGIS、文件上传下载、文件操作<br>
+	短信验证码、图形验证码、发送邮件、本机信息获取、系统资源SNMP监控、EXCEL和WORD与HTML转换<br>
+	加解密、签名验证、字符编码、线程超时、LUCENSE关键字、正则表达式<br>
+	SPRING事件监听、SHIRO自定义鉴权和动态权限、JDBC封装<br>
+	</p>  
+</p>
+
+
 </br>
+## com.zhw.core.classhotloader </br>
+类加载  </br>
+
 ## com.zhw.core.db</br>
 * mysql、oracle数据库连接、操作、防止sql注入，转换为bean，数据库监控
 * oracle连接,操作
@@ -68,13 +75,12 @@ SPRING事件监听、SHIRO自定义鉴权和动态权限、JDBC封装<br>
 ## com.zhw.web.util.websocket
 * websocket打开、广播、响应、推送、销毁
 
-
+## Status
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/v4-dev.svg)](https://github.com/makeok/zhw-util)
 # to do list
 * js常用库
-
 # CHANGELOG
 ## v0.1
 * 出版上传
-
 # contact
 * <zhw513029@163.com>
