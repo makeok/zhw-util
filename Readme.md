@@ -7,9 +7,6 @@
 SPRING事件监听、SHIRO自定义鉴权和动态权限、JDBC封装<br>
 </p>  
 </br>
-## com.zhw.core.classhotloader </br>
-类加载  </br>
-
 ## com.zhw.core.db</br>
 * mysql、oracle数据库连接、操作、防止sql注入，转换为bean，数据库监控
 * oracle连接,操作
