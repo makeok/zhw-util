@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <description>apache shiro配置</description>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login.jsp"/>
+        <property name="successUrl" value="/index.jsp"/>
+        <property name="unauthorizedUrl" value="/401.jsp"/>
+        <property name="filterChainDefinitions">
+            <value>
+            	<!--  
+	            Shiro内置的FilterChain 
+				Filter Name	Class
+				anon	org.apache.shiro.web.filter.authc.AnonymousFilter
+				authc	org.apache.shiro.web.filter.authc.FormAuthenticationFilter
+				authcBasic	org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter
+				perms	org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter
+				port	org.apache.shiro.web.filter.authz.PortFilter
+				rest	org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter
+				roles	org.apache.shiro.web.filter.authz.RolesAuthorizationFilter
+				ssl	org.apache.shiro.web.filter.authz.SslFilter
+				user	org.apache.shiro.web.filter.authc.UserFilter
+				# some example chain definitions:  
+            	/admin/** = authc, roles[admin]  
+            	/docs/** = authc, perms[document:read] 
+				-->
+				
+                <!-- 静态资源允许访问 -->
+                <!-- 暂时注释 /app/scheduleManage/schedule.jsp = roles[leader] -->   
+                <!--  /app/userManage/** =roles[admin]  
+                /app/admin/** = authc, roles[admin] 
+                /login.jsp = anon
+                /image.jsp = anon
+                /forgetpw.jsp = anon
+                /register.jsp = anon
+                /forgetpw_in.jsp = anon
+                -->
+            </value>
+        </property>
+    </bean>
+
+    <!-- 缓存管理器 使用Ehcache实现 -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+    </bean>
+
+    <!-- 会话DAO -->
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO"/>
+    
+	<!-- 会话Cookie模板 -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+	  <constructor-arg value="sid"/>
+	  <property name="httpOnly" value="true"/>
+	  <property name="maxAge" value="180000"/>
+	</bean>
+	
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionDAO" ref="sessionDAO"/>
+		<!-- 超时时间 --> 
+	    <property name="globalSessionTimeout" value="1800000"/>
+	    <property name="deleteInvalidSessions" value="true"/> 
+	    <property name="sessionIdCookie" ref="sessionIdCookie"/> 
+	    <!-- 定时检查失效的session --> 
+	    <property name="sessionValidationSchedulerEnabled" value="true" /> 
+    </bean>
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realms">
+            <list>
+                <ref bean="securityRealm"/>
+            </list>
+        </property>
+        <!-- cacheManager,集合spring缓存工厂 -->
+        <property name="cacheManager" ref="shiroEhcacheManager" /> 
+        <!-- <property name="sessionManager" ref="sessionManager" /> -->
+    </bean>
+
+    <!-- Shiro生命周期处理器 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+
+</beans>
